@@ -1,18 +1,15 @@
 require("dotenv").config();
 
-import {hydrate, HydrateFlavor} from "@grammyjs/hydrate";
-import {Bot, Context} from "grammy";
+import {Bot} from "grammy";
 
 if (!process.env.BOT_TOKEN) {
     throw Error("Не обнаружен токен бота");
 }
 
-type MyContext = HydrateFlavor<Context>;
-
 // Создание экземпляра бота
-const bot = new Bot<MyContext>(process.env.BOT_TOKEN);
+const bot = new Bot(process.env.BOT_TOKEN);
 
-bot.use(hydrate());
+bot.use();
 
 /** Добавление меню с командами */
 bot.api.setMyCommands([
